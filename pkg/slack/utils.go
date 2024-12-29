@@ -20,7 +20,7 @@ func (s *SlackSDK) sendRequest(endpoint, method string, payload interface{}) (ma
 	}
 
 	req.Header.Set("Authorization", "Bearer "+s.Token)
-	req.Header.Set("Content-Type", "application/json")
+	req.Header.Set("Content-Type", "application/json; charset=utf-8")
 
 	client := &http.Client{}
 	resp, err := client.Do(req)
