@@ -1,5 +1,3 @@
-Here’s the entire content as a single .md file:
-
 # 🚀 Slack SDK for Go  
 
 A **lightweight** and **modular** SDK for building Slack bots and apps in **Go**. With this SDK, you can easily send messages, manage users, and extend functionality to integrate with the Slack API seamlessly.  
