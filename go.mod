@@ -1,3 +1,3 @@
-module pramithamj/slack-go-sdk
+module github.com/pramithamj/slack-sdk-go
 
 go 1.22.1
