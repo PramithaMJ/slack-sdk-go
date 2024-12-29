@@ -60,27 +60,6 @@ func main() {
 	fmt.Printf("Message sent successfully: %v\n", response)  
 }  
 ```
-#### 📂 Project Structure
-
-slack-sdk-go/  
-├── cmd/  
-│   └── example/  
-│       └── main.go         # Example usage of the SDK  
-├── pkg/  
-│   └── slack/  
-│       ├── slack.go        # Core SDK struct and initialization  
-│       ├── message.go      # Message-related APIs  
-│       ├── user.go         # User-related APIs  
-│       ├── utils.go        # Shared utilities (e.g., HTTP client)  
-│       └── types.go        # Shared types and structs  
-├── internal/  
-│   └── mock/  
-│       └── http_mock.go    # Mock HTTP responses for testing  
-├── tests/  
-│   └── slack_test.go       # Unit and integration tests  
-├── go.mod                  # Go module file  
-└── README.md               # Documentation  
-
 #### 📖 API Methods
 
 1️⃣ SendMessage
