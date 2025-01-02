@@ -76,6 +76,7 @@ if err != nil {
 }  
 fmt.Println(response)  
 ```
+
 2️⃣ GetUserInfo
 
 Fetch details about a Slack user.
