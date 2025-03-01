@@ -116,4 +116,132 @@ PramithaMJ
 	•	💻 [PramithaMJ]](https://github.com/pramithamj)
 	•	📧 lpramithamj@gmail.com
 
-Enjoy coding with the Slack SDK for Go! 🧑‍💻
+# Slack SDK for Go 🚀
+
+A powerful and flexible Go SDK for interacting with the Slack API, providing a simple yet comprehensive interface for sending messages and managing Slack communications.
+
+## Features ✨
+
+- 📝 Simple and rich message support
+- 🧵 Thread reply functionality
+- 🔄 Automatic retries with configurable attempts
+- ⏱️ Context support for timeouts and cancellation
+- 🎯 Custom error types and proper error handling
+- 🔐 Secure configuration via environment variables
+- 📦 Block kit and message attachments support
+
+## Installation 📥
+
+```bash
+go get github.com/pramithamj/slack-go-sdk
+```
+
+## Quick Start 🚀
+
+```go
+package main
+
+import (
+    "context"
+    "log"
+    "os"
+    "time"
+
+    "github.com/pramithamj/slack-go-sdk/pkg/slack"
+)
+
+func main() {
+    // Get token from environment
+    token := os.Getenv("SLACK_BOT_TOKEN")
+    if token == "" {
+        log.Fatal("SLACK_BOT_TOKEN is required")
+    }
+
+    // Initialize SDK
+    sdk := slack.NewSlackSDK(token)
+
+    // Send a message
+    ctx := context.Background()
+    response, err := sdk.SendMessage(ctx, "CHANNEL_ID", "Hello from Go SDK!")
+    if err != nil {
+        log.Fatal(err)
+    }
+    log.Printf("Message sent: %v", response)
+}
+```
+
+## Advanced Usage 🔧
+
+### Custom Configuration
+
+```go
+sdk := slack.NewSlackSDKWithConfig(slack.Config{
+    Token:         token,
+    BaseURL:       "https://slack.com/api/",
+    Timeout:       10 * time.Second,
+    RetryAttempts: 2,
+    RetryWaitTime: time.Second,
+})
+```
+
+### Rich Messages with Blocks
+
+```go
+richMessage := slack.MessagePayload{
+    Channel: channelID,
+    Blocks: []slack.Block{
+        {
+            Type: "section",
+            Text: &slack.TextObject{
+                Type: "mrkdwn",
+                Text: "*Hello!*\nThis is a rich message.",
+            },
+        },
+    },
+}
+
+response, err := sdk.SendRichMessage(ctx, richMessage)
+```
+
+### Thread Replies
+
+```go
+response, err := sdk.SendThreadReply(ctx, channelID, threadTS, "This is a reply!")
+```
+
+## Environment Variables 🔐
+
+- `SLACK_BOT_TOKEN`: Your Slack bot token (required)
+- `SLACK_CHANNEL_ID`: Default channel ID for messages
+
+## Error Handling 🔍
+
+```go
+response, err := sdk.SendMessage(ctx, channelID, message)
+if err != nil {
+    if slackErr, ok := err.(*slack.SlackError); ok {
+        log.Printf("Slack API error: %s", slackErr.Message)
+    } else {
+        log.Printf("Other error: %v", err)
+    }
+}
+```
+
+## Contributing 🤝
+
+Contributions are welcome! Feel free to:
+- Report bugs
+- Suggest new features
+- Submit PRs
+
+## Contact 📫
+
+- 💻 [PramithaMJ](https://github.com/pramithamj)
+- 📧 lpramithamj@gmail.com
+
+## License 📄
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+---
+Last Updated: March 1, 2025
