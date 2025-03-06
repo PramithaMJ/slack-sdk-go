@@ -1,16 +1,19 @@
-# 🚀 Slack SDK for Go  
+# 🚀 Slack SDK for Go
 
-A **lightweight** and **modular** SDK for building Slack bots and apps in **Go**. With this SDK, you can easily send messages, manage users, and extend functionality to integrate with the Slack API seamlessly.  
+A **lightweight** and **modular** SDK for building Slack bots and apps in **Go**. With this SDK, you can easily send messages with Block Kit support, manage users, and extend functionality to integrate with the Slack API seamlessly.
+
+*Last Updated: March 6, 2025*
 
 ---
 
 ### 🌟 Features  
 
-- 📨 **Send messages** to Slack channels  
-- 👤 **Fetch user information**  
-- ⚡️ **Extendable** for additional Slack APIs  
-- 🧩 **Lightweight** and modular design  
-- 🎯 **Easy integration** into Go projects  
+- 📨 **Send messages** to Slack channels with Block Kit support
+- 🎨 **Rich formatting** using Block Kit components
+- 👤 **Fetch user information**
+- ⚡️ **Extendable** for additional Slack APIs
+- 🧩 **Lightweight** and modular design
+- 🎯 **Easy integration** into Go projects
 
 ---
 
@@ -116,6 +119,8 @@ This project is licensed under the MIT License. See the LICENSE file for more de
 PramithaMJ
 	•	💻 [PramithaMJ]](https://github.com/pramithamj)
 	•	📧 lpramithamj@gmail.com
+
+---
 
 # Slack SDK for Go 🚀
 
@@ -245,4 +250,4 @@ Contributions are welcome! Feel free to:
 This project is licensed under the MIT License - see the LICENSE file for details.
 
 ---
-Last Updated: March 1, 2025
+Last Updated: March 6, 2025

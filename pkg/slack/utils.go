@@ -2,10 +2,24 @@ package slack
 
 import (
 	"bytes"
+	"context"
 	"encoding/json"
-	"errors"
+	"fmt"
 	"net/http"
+	"time"
 )
+
+// SlackError represents an error response from the Slack API
+type SlackError struct {
+	Code    string `json:"code"`
+	Message string `json:"message"`
+	Ok      bool   `json:"ok"`
+}
+
+// Error implements the error interface
+func (e *SlackError) Error() string {
+	return fmt.Sprintf("Slack API error: %s - %s", e.Code, e.Message)
+}
 
 func (s *SlackSDK) sendRequest(ctx context.Context, endpoint, method string, payload interface{}) (map[string]interface{}, error) {
     if ctx == nil {
