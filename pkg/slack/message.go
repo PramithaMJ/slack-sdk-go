@@ -1,11 +1,17 @@
 package slack
 
-type MessagePayload struct {
-	Channel string `json:"channel"`
-	Text    string `json:"text"`
-}
+import (
+	"context"
+	"errors"
+)
 
-import "context"
+type MessagePayload struct {
+	Channel     string        `json:"channel"`
+	Text        string        `json:"text"`
+	ThreadTS    string        `json:"thread_ts,omitempty"`
+	Blocks      []Block       `json:"blocks,omitempty"`
+	Attachments []interface{} `json:"attachments,omitempty"`
+}
 
 // SendMessage sends a simple text message to a channel
 func (s *SlackSDK) SendMessage(ctx context.Context, channel, text string) (map[string]interface{}, error) {

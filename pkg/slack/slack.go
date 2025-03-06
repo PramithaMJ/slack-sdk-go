@@ -1,7 +1,6 @@
 package slack
 
 import (
-    "context"
     "time"
 )
 
@@ -33,5 +32,4 @@ func NewSlackSDKWithConfig(config Config) *SlackSDK {
     return &SlackSDK{
         config: config,
     }
-}
 }
