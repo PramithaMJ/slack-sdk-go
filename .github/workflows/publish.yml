@@ -1,4 +1,4 @@
-name: Publish Go Module
+name: Publish Package
 
 on:
   push:
@@ -18,12 +18,29 @@ jobs:
       with:
         go-version: '1.22.1'
 
-    - name: Build and Publish
+    - name: Build
       run: |
+        echo "//PramithaMJ:***" > ~/.npmrc
         go mod tidy
         go mod vendor
-        go build -o ./bin/slack-sdk-go ./pkg/slack
-        GOPROXY=proxy.golang.org go list -m github.com/PramithaMJ/slack-sdk-go
+        cd pkg/slack
+        go build -o ./bin/slack-sdk-go .
       env:
         GOROOT: /opt/hostedtoolcache/go/1.22.1/x64
+        GITHUB_TOKEN: ${{ secrets.GITHUB_PKG_TOKEN }}
+
+    - name: Publish to GitHub Packages
+      run: |
+        mkdir -p ~/.github
+        echo "${{ secrets.GITHUB_PKG_TOKEN }}" > ~/.github/packages-auth-token
+        go env -w GOPRIVATE=github.com/PramithaMJ/slack-sdk-go
+        go env -w GOPROXY=direct
+        go env -w GONOSUMDB=github.com/PramithaMJ/slack-sdk-go
+        go list -m -json all | jq -r '.Path+" "+.Version' > go.mod
+        go list -m -json all | jq -r '.Path+"@"+.Version' > go.sum
+        GOPROXY=https://github.com/PramithaMJ/slack-sdk-go go mod download
+        GOPROXY=https://github.com/PramithaMJ/slack-sdk-go go list -m all
+        GOPROXY=https://github.com/PramithaMJ/slack-sdk-go go list -m -json all
+        GOPROXY=https://github.com/PramithaMJ/slack-sdk-go go list -m -json all
+      env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_PKG_TOKEN }}
