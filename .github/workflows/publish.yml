@@ -23,7 +23,7 @@ jobs:
         echo "//PramithaMJ:***" > ~/.npmrc
         go mod tidy
         go mod vendor
-        cd path/to/your/main/go/file
+        cd .
         go build -o ./bin/slack-sdk-go .
       env:
         GOROOT: /opt/hostedtoolcache/go/1.22.1/x64
