@@ -31,16 +31,8 @@ jobs:
 
     - name: Publish to GitHub Packages
       run: |
-        mkdir -p ~/.github
-        echo "${{ secrets.GITHUB_PKG_TOKEN }}" > ~/.github/packages-auth-token
-        go env -w GOPRIVATE=github.com/PramithaMJ/slack-sdk-go
-        go env -w GOPROXY=direct
-        go env -w GONOSUMDB=github.com/PramithaMJ/slack-sdk-go
+        echo "//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_PKG_TOKEN }}" > ~/.npmrc
         go list -m -json all | jq -r '.Path+" "+.Version' > go.mod
-        go list -m -json all | jq -r '.Path+"@"+.Version' > go.sum
-        GOPROXY=https://github.com/PramithaMJ/slack-sdk-go go mod download
-        GOPROXY=https://github.com/PramithaMJ/slack-sdk-go go list -m all
-        GOPROXY=https://github.com/PramithaMJ/slack-sdk-go go list -m -json all
-        GOPROXY=https://github.com/PramithaMJ/slack-sdk-go go list -m -json all
+        GOPROXY=https://npm.pkg.github.com go publish
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_PKG_TOKEN }}
