@@ -32,6 +32,6 @@ jobs:
     - name: Publish to GitHub Packages
       run: |
         echo "//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_PKG_TOKEN }}" > ~/.npmrc
-        GOPROXY=https://npm.pkg.github.com go publish
+        GOPROXY=https://npm.pkg.github.com go mod tidy
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_PKG_TOKEN }}
