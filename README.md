@@ -2,6 +2,7 @@
 
 [![Go](https://github.com/PramithaMJ/slack-sdk-go/workflows/Go/badge.svg)](https://github.com/PramithaMJ/slack-sdk-go/actions/workflows/go.yml)
 [![CI](https://github.com/PramithaMJ/slack-sdk-go/workflows/CI/badge.svg)](https://github.com/PramithaMJ/slack-sdk-go/actions/workflows/main.yml)
+[![Publish Package](https://github.com/PramithaMJ/slack-sdk-go/actions/workflows/publish.yml/badge.svg)](https://github.com/PramithaMJ/slack-sdk-go/actions/workflows/publish.yml)
 
 A **lightweight** and **modular** SDK for building Slack bots and apps in **Go**. With this SDK, you can easily send messages with Block Kit support, manage users, and extend functionality to integrate with the Slack API seamlessly.
 
