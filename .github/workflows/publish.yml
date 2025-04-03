@@ -20,19 +20,15 @@ jobs:
 
     - name: Build
       run: |
-        echo "//PramithaMJ:***" > ~/.npmrc
         go mod tidy
         go mod vendor
-        cd pkg/slack
-        go build -o ./bin/slack-sdk-go .
+        go build -o ./bin/slack-sdk-go ./pkg/slack
       env:
         GOROOT: /opt/hostedtoolcache/go/1.22.1/x64
-        GITHUB_TOKEN: ${{ secrets.GITHUB_PKG_TOKEN }}
 
     - name: Publish to GitHub Packages
       run: |
         echo "//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_PKG_TOKEN }}" > ~/.npmrc
-        go list -m -json all | jq -r '.Path+" "+.Version' > go.mod
-        GOPROXY=https://npm.pkg.github.com go publish
+        npm publish
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_PKG_TOKEN }}
